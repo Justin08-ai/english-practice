@@ -149,6 +149,49 @@ function renderHome(set, index, setCount) {
   document.getElementById('today-set').textContent = '세트 ' + (index + 1) + '/' + setCount;
 }
 
+// ----- 연속 사용일수 -----
+// 3분 모드 5문장을 다 체크하거나 25분 타이머를 끝까지 하면, 그날을 "한 날"로 저장합니다.
+
+function markPracticed() {
+  const days = store.days || [];
+  if (!days.includes(todayKey)) {
+    days.push(todayKey);
+    store.days = days;
+    saveStore();
+  }
+  renderStreak();
+}
+
+// 오늘(아직 안 했으면 어제)부터 하루씩 거슬러 가며, 끊기지 않고 한 날이 며칠인지 셉니다.
+function streakCount() {
+  const days = new Set(store.days || []);
+  const now = new Date();
+  const day = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  if (!days.has(dateKey(day))) day.setDate(day.getDate() - 1); // 오늘은 아직 기회가 있으니 끊긴 걸로 안 봄
+  let count = 0;
+  while (days.has(dateKey(day))) {
+    count++;
+    day.setDate(day.getDate() - 1);
+  }
+  return count;
+}
+
+function renderStreak() {
+  const count = streakCount();
+  const doneToday = (store.days || []).includes(todayKey);
+  document.getElementById('streak-count').textContent = count;
+
+  const today = document.getElementById('streak-today');
+  today.classList.toggle('is-done', doneToday);
+  if (doneToday) today.textContent = '✓ 오늘 완료';
+  else if (count > 0) today.textContent = '오늘 하면 ' + (count + 1) + '일째!';
+  else today.textContent = '오늘부터 시작해요';
+
+  document.querySelectorAll('.done-streak').forEach(el => {
+    el.textContent = count + '일 연속이에요';
+  });
+}
+
 // ----- 3분 모드 -----
 
 // 오늘 "말했어요"를 누른 문장 번호들 (날짜가 바뀌면 빈 목록)
@@ -199,6 +242,7 @@ function toggleSaid(i, total) {
 
   const finished = updateThree(total);
   if (finished) {
+    markPracticed();
     document.getElementById('three-done').scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
@@ -354,6 +398,7 @@ function updateTimer() {
     t.remaining = 0;
     saveStore();
     keepScreenOn(false);
+    markPracticed();
   }
 
   const left = remainingMs();
@@ -466,6 +511,7 @@ async function start() {
   const now = new Date();
   document.getElementById('today-date').textContent =
     now.toLocaleDateString('ko-KR', { month: 'long', day: 'numeric', weekday: 'long' });
+  renderStreak();
 
   document.getElementById('timer-start').addEventListener('click', toggleTimer);
   document.getElementById('timer-reset').addEventListener('click', resetTimer);
@@ -473,8 +519,16 @@ async function start() {
   setInterval(updateTimer, 250);
   if (timerState().endAt) keepScreenOn(true);
 
+  let data;
   try {
-    const data = await loadSentences();
+    data = await loadSentences();
+  } catch (err) {
+    document.getElementById('today-topic').textContent = '-';
+    showError(err.message);
+    return;
+  }
+
+  try {
     const count = data.sets.length;
     const yesterday = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1);
     const index = setIndexFor(now, count);
@@ -484,7 +538,7 @@ async function start() {
     renderTwentyFive(today, data.sets[setIndexFor(yesterday, count)]);
   } catch (err) {
     document.getElementById('today-topic').textContent = '-';
-    showError(err.message);
+    showError('sentences.json에 빠진 부분이 있어요.\n세트마다 title, situation, sentences가 있는지, 문장마다 en이 있는지 확인해 주세요.\n\n자세한 내용: ' + err.message);
   }
 }
 

@@ -89,6 +89,14 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   font-variant-numeric: tabular-nums;
 }
 .streak-label { font-size: 18px; color: var(--muted); font-weight: 600; }
+.streak-today {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  text-align: right;
+}
+.streak-today.is-done { color: var(--ok); }
 
 .topic {
   display: flex;
@@ -297,9 +305,14 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   border-radius: var(--radius);
 }
 .done-title {
-  margin: 0 0 16px;
+  margin: 0;
   font-size: 20px;
   font-weight: 800;
+}
+.done-streak {
+  margin: 4px 0 16px;
+  color: var(--ok);
+  font-weight: 700;
 }
 .done-box .btn { width: 100%; }
 
