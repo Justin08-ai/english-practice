@@ -8,6 +8,7 @@
   --accent-3: #c2410c;   /* 3분 모드 색 */
   --accent-25: #3445b4;  /* 25분 모드 색 */
   --ok: #2f7d3b;
+  --on-ok: #ffffff;      /* 초록 버튼 위 글자색 */
   --danger: #b42318;
   --radius: 20px;
 }
@@ -23,6 +24,7 @@
     --accent-3: #e2622f;
     --accent-25: #5b6cdb;
     --ok: #5cb26a;
+    --on-ok: #0f1a10;
     --danger: #f97066;
   }
 }
@@ -144,6 +146,166 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   background: var(--surface);
   border: 1px dashed var(--line);
   border-radius: var(--radius);
+}
+
+/* ===== 버튼 공통 ===== */
+.btn {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 52px;
+  padding: 0 16px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  touch-action: manipulation; /* 두 번 탭해도 화면이 확대되지 않게 */
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  border-color: var(--accent-3);
+  background: var(--accent-3);
+  color: #fff;
+}
+.icon { width: 22px; height: 22px; flex: none; }
+
+/* ===== 3분 모드 ===== */
+.mode-topic {
+  margin: -8px 0 8px;
+  color: var(--muted);
+}
+
+/* 진행 막대: 아래로 스크롤해도 화면 위에 붙어 있어요 */
+.progress {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  background: var(--bg);
+}
+.progress-bar {
+  flex: 1;
+  height: 10px;
+  background: var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.progress-bar span {
+  display: block;
+  width: 0;
+  height: 100%;
+  background: var(--ok);
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+.progress-text {
+  min-width: 3ch;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.how {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.cards {
+  display: grid;
+  gap: 14px;
+}
+
+.card {
+  padding: 20px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  transition: border-color 0.2s ease;
+}
+.card.said { border-color: var(--ok); }
+
+.card-num {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.card-en {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  word-break: normal;
+}
+.card-ko {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+/* 듣기가 끝난 뒤, 아직 "말했어요"를 안 눌렀을 때만 보이는 안내 */
+.card-hint {
+  display: none;
+  margin: 12px 0 0;
+  color: var(--accent-3);
+  font-size: 15px;
+  font-weight: 700;
+}
+.card.listened:not(.said) .card-hint { display: block; }
+
+.card-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn-listen.playing {
+  border-color: var(--accent-3);
+  color: var(--accent-3);
+}
+
+.btn-said {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.btn-said[aria-pressed="true"] {
+  background: var(--ok);
+  color: var(--on-ok);
+}
+
+.done {
+  margin-top: 20px;
+  padding: 24px;
+  text-align: center;
+  background: var(--surface);
+  border: 2px solid var(--ok);
+  border-radius: var(--radius);
+}
+.done-title {
+  margin: 0 0 16px;
+  font-size: 20px;
+  font-weight: 800;
+}
+.done .btn { width: 100%; }
+
+.sound-tip {
+  margin: 24px 4px 0;
+  color: var(--muted);
+  font-size: 13px;
 }
 
 /* ===== 오류 상자 ===== */

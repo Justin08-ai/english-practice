@@ -44,12 +44,48 @@
       </nav>
     </section>
 
-    <!-- ===== 3분 모드 (2단계에서 채웁니다) ===== -->
+    <!-- ===== 3분 모드 ===== -->
     <section id="three" class="screen" hidden>
       <a class="back" href="#">← 홈</a>
       <h2>3분 모드</h2>
-      <p class="placeholder">2단계에서 만들어요.</p>
+      <p class="mode-topic" id="three-topic"></p>
+
+      <div class="progress">
+        <div class="progress-bar"><span id="three-bar"></span></div>
+        <span class="progress-text" id="three-count">0/5</span>
+      </div>
+      <p class="how">듣기 → 소리 내서 따라 말하기 → "말했어요"</p>
+
+      <!-- 문장 카드가 여기에 들어갑니다 (아래 card-template을 복사해서 만듦) -->
+      <div id="three-cards" class="cards"></div>
+
+      <div id="three-done" class="done" hidden>
+        <p class="done-title">잘했어요! 오늘 문장을 다 말했어요.</p>
+        <a class="btn btn-primary" href="#">홈으로</a>
+      </div>
+
+      <p class="sound-tip">소리가 안 나면 아이폰의 무음 모드와 볼륨을 확인해 주세요.</p>
     </section>
+
+    <!-- 문장 카드 1장의 모양 -->
+    <template id="card-template">
+      <article class="card">
+        <p class="card-num"></p>
+        <p class="card-en" lang="en"></p>
+        <p class="card-ko"></p>
+        <p class="card-hint">이제 소리 내서 따라 말해 보세요</p>
+        <div class="card-actions">
+          <button type="button" class="btn btn-listen">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+              <path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <span class="label">듣기</span>
+          </button>
+          <button type="button" class="btn btn-said" aria-pressed="false">말했어요</button>
+        </div>
+      </article>
+    </template>
 
     <!-- ===== 25분 모드 (3단계에서 채웁니다) ===== -->
     <section id="twentyfive" class="screen" hidden>
