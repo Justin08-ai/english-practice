@@ -1,0 +1,71 @@
+{
+  "_help": "고칠 때는 따옴표(\") 안의 글자만 바꾸세요. 항목 사이의 쉼표(,)는 지우지 말고, 마지막 항목 뒤에는 쉼표를 넣지 마세요.",
+  "sets": [
+    {
+      "title": "카페에서 주문하기",
+      "situation": "Claude는 바쁜 카페의 바리스타, 나는 음료를 주문하는 손님",
+      "sentences": [
+        { "en": "Can I get an iced Americano, please?", "ko": "아이스 아메리카노 한 잔 주시겠어요?" },
+        { "en": "Could you make it a large?", "ko": "라지 사이즈로 해주시겠어요?" },
+        { "en": "It's for here, not to go.", "ko": "포장 말고 여기서 마실게요." },
+        { "en": "Can I pay by card?", "ko": "카드로 계산해도 될까요?" },
+        { "en": "Could you make it a little less sweet?", "ko": "조금 덜 달게 해주실 수 있나요?" }
+      ]
+    },
+    {
+      "title": "처음 만난 사람과 인사하기",
+      "situation": "Claude는 모임에서 처음 만난 외국인 친구, 나는 먼저 말을 거는 사람",
+      "sentences": [
+        { "en": "Hi, nice to meet you. I'm from Korea.", "ko": "안녕하세요, 만나서 반가워요. 저는 한국에서 왔어요." },
+        { "en": "What do you do for a living?", "ko": "무슨 일 하세요?" },
+        { "en": "How long have you been living here?", "ko": "여기 사신 지 얼마나 됐어요?" },
+        { "en": "What do you usually do on weekends?", "ko": "주말에는 보통 뭐 하세요?" },
+        { "en": "It was really nice talking to you.", "ko": "이야기 나눠서 정말 즐거웠어요." }
+      ]
+    },
+    {
+      "title": "식당에서 주문하기",
+      "situation": "Claude는 레스토랑 직원, 나는 친구와 저녁을 먹으러 온 손님",
+      "sentences": [
+        { "en": "Do you have a table for two?", "ko": "두 명 앉을 자리 있나요?" },
+        { "en": "What do you recommend here?", "ko": "여기서 뭘 추천하세요?" },
+        { "en": "I'll have the same, please.", "ko": "저도 같은 걸로 할게요." },
+        { "en": "Could we get some more water, please?", "ko": "물 좀 더 주시겠어요?" },
+        { "en": "Can we get the check, please?", "ko": "계산서 좀 주시겠어요?" }
+      ]
+    },
+    {
+      "title": "길 묻고 교통 이용하기",
+      "situation": "Claude는 길에서 만난 친절한 현지인, 나는 길을 잃은 여행자",
+      "sentences": [
+        { "en": "Excuse me, how do I get to the subway station?", "ko": "실례합니다, 지하철역에 어떻게 가요?" },
+        { "en": "Is it within walking distance?", "ko": "걸어갈 수 있는 거리인가요?" },
+        { "en": "Which bus goes downtown?", "ko": "시내로 가는 버스는 어떤 거예요?" },
+        { "en": "How long does it take to get there?", "ko": "거기까지 얼마나 걸려요?" },
+        { "en": "Could you show me on the map?", "ko": "지도에서 보여주실 수 있나요?" }
+      ]
+    },
+    {
+      "title": "호텔 체크인하기",
+      "situation": "Claude는 호텔 프런트 직원, 나는 막 도착해서 체크인하는 손님",
+      "sentences": [
+        { "en": "Hi, I'd like to check in. I have a reservation.", "ko": "안녕하세요, 체크인하려고요. 예약했어요." },
+        { "en": "What time is checkout?", "ko": "체크아웃은 몇 시예요?" },
+        { "en": "Is breakfast included?", "ko": "조식이 포함되어 있나요?" },
+        { "en": "Could I get a room on a higher floor?", "ko": "높은 층 방으로 주실 수 있나요?" },
+        { "en": "Can I leave my luggage here after checkout?", "ko": "체크아웃 후에 짐을 여기 맡겨도 될까요?" }
+      ]
+    },
+    {
+      "title": "내 일상과 관심사 이야기하기",
+      "situation": "Claude는 카페에서 수다 떠는 친구, 나는 요즘 근황을 이야기하는 사람",
+      "sentences": [
+        { "en": "I've been trying to work out more lately.", "ko": "요즘 운동을 더 하려고 노력하고 있어요." },
+        { "en": "I'm thinking about starting a small business.", "ko": "작은 사업을 시작해 볼까 생각 중이에요." },
+        { "en": "In my free time, I like to read and study.", "ko": "시간 날 때는 책 읽고 공부하는 걸 좋아해요." },
+        { "en": "I'm practicing English a little every day.", "ko": "매일 조금씩 영어를 연습하고 있어요." },
+        { "en": "What about you? What are you into these days?", "ko": "당신은요? 요즘 뭐에 빠져 있어요?" }
+      ]
+    }
+  ]
+}

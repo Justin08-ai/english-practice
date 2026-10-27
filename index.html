@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <!-- 아이폰 화면 폭에 맞추고, 노치(화면 위 홈) 부분까지 화면을 씁니다 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#151515" media="(prefers-color-scheme: dark)">
+  <title>영어 말하기 연습</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <!-- sentences.json을 못 읽었을 때 이유를 보여주는 상자 -->
+    <p id="error" class="error" hidden></p>
+
+    <!-- ===== 홈 화면 ===== -->
+    <section id="home" class="screen">
+      <header class="home-header">
+        <p class="date" id="today-date"></p>
+        <h1>영어 말하기 연습</h1>
+      </header>
+
+      <div class="streak">
+        <span class="streak-number" id="streak-count">0</span>
+        <span class="streak-label">일 연속</span>
+      </div>
+
+      <p class="topic">
+        <span class="topic-label">오늘의 주제</span>
+        <strong id="today-topic">불러오는 중…</strong>
+        <span class="topic-set" id="today-set"></span>
+      </p>
+
+      <nav class="modes">
+        <a class="mode-button mode-3" href="#three">
+          <span class="mode-title">3분 모드</span>
+          <span class="mode-desc">오늘 문장 5개 듣고 따라 말하기</span>
+        </a>
+        <a class="mode-button mode-25" href="#twentyfive">
+          <span class="mode-title">25분 모드</span>
+          <span class="mode-desc">복습 → 따라 말하기 → Claude 롤플레이</span>
+        </a>
+      </nav>
+    </section>
+
+    <!-- ===== 3분 모드 (2단계에서 채웁니다) ===== -->
+    <section id="three" class="screen" hidden>
+      <a class="back" href="#">← 홈</a>
+      <h2>3분 모드</h2>
+      <p class="placeholder">2단계에서 만들어요.</p>
+    </section>
+
+    <!-- ===== 25분 모드 (3단계에서 채웁니다) ===== -->
+    <section id="twentyfive" class="screen" hidden>
+      <a class="back" href="#">← 홈</a>
+      <h2>25분 모드</h2>
+      <p class="placeholder">3단계에서 만들어요.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
