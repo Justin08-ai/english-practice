@@ -31,6 +31,9 @@
 
 * { box-sizing: border-box; }
 
+/* hidden 표시가 붙은 것은 무조건 숨김 */
+[hidden] { display: none !important; }
+
 html {
   -webkit-text-size-adjust: 100%;
 }
@@ -140,14 +143,6 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   text-decoration: none;
 }
 
-.placeholder {
-  padding: 24px;
-  color: var(--muted);
-  background: var(--surface);
-  border: 1px dashed var(--line);
-  border-radius: var(--radius);
-}
-
 /* ===== 버튼 공통 ===== */
 .btn {
   -webkit-appearance: none;
@@ -175,6 +170,12 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   background: var(--accent-3);
   color: #fff;
 }
+.btn-blue {
+  border-color: var(--accent-25);
+  background: var(--accent-25);
+  color: #fff;
+}
+.btn-wide { width: 100%; }
 .icon { width: 22px; height: 22px; flex: none; }
 
 /* ===== 3분 모드 ===== */
@@ -287,7 +288,7 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   color: var(--on-ok);
 }
 
-.done {
+.done-box {
   margin-top: 20px;
   padding: 24px;
   text-align: center;
@@ -300,12 +301,162 @@ h2 { font-size: 26px; letter-spacing: -0.02em; margin-bottom: 16px; }
   font-size: 20px;
   font-weight: 800;
 }
-.done .btn { width: 100%; }
+.done-box .btn { width: 100%; }
 
 .sound-tip {
   margin: 24px 4px 0;
   color: var(--muted);
   font-size: 13px;
+}
+
+/* ===== 25분 모드 ===== */
+.timer {
+  padding: 24px 20px;
+  text-align: center;
+  background: var(--surface);
+  border: 2px solid var(--accent-25);
+  border-radius: var(--radius);
+}
+.timer-step {
+  margin: 0;
+  color: var(--accent-25);
+  font-size: 16px;
+  font-weight: 700;
+}
+.timer-time {
+  margin: 4px 0;
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+.timer-total {
+  margin: 0 0 16px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.timer-buttons {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 10px;
+}
+
+.step {
+  margin-top: 16px;
+  padding: 20px;
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--radius);
+  scroll-margin-top: 16px;
+}
+.step.current { border-color: var(--accent-25); }
+.step.done { opacity: 0.6; }
+
+.step h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-size: 19px;
+  line-height: 1.3;
+}
+.step-num {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--line);
+  font-size: 15px;
+}
+.step.current .step-num { background: var(--accent-25); color: #fff; }
+.step.done .step-num { background: var(--ok); color: var(--on-ok); }
+.step-min {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.step-desc {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.mini-list {
+  margin: 8px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.mini-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+}
+.mini-item:first-child { border-top: 0; }
+.mini-text { flex: 1; min-width: 0; }
+.mini-en {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  word-break: normal;
+}
+.mini-ko {
+  margin: 2px 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+.mini-listen {
+  flex: none;
+  width: 48px;
+  min-height: 48px;
+  padding: 0;
+  border-radius: 50%;
+}
+.mini-listen.playing {
+  border-color: var(--accent-25);
+  color: var(--accent-25);
+}
+
+.situation {
+  margin: 0 0 12px;
+  padding: 14px 16px;
+  background: var(--bg);
+  border-radius: 14px;
+}
+.situation-label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+.howto {
+  margin: 0 0 12px;
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 15px;
+}
+.howto b { color: var(--text); }
+
+.prompt {
+  margin: 0 0 12px;
+  padding: 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }
 
 /* ===== 오류 상자 ===== */

@@ -59,7 +59,7 @@
       <!-- 문장 카드가 여기에 들어갑니다 (아래 card-template을 복사해서 만듦) -->
       <div id="three-cards" class="cards"></div>
 
-      <div id="three-done" class="done" hidden>
+      <div id="three-done" class="done-box" hidden>
         <p class="done-title">잘했어요! 오늘 문장을 다 말했어요.</p>
         <a class="btn btn-primary" href="#">홈으로</a>
       </div>
@@ -87,12 +87,74 @@
       </article>
     </template>
 
-    <!-- ===== 25분 모드 (3단계에서 채웁니다) ===== -->
+    <!-- ===== 25분 모드 ===== -->
     <section id="twentyfive" class="screen" hidden>
       <a class="back" href="#">← 홈</a>
       <h2>25분 모드</h2>
-      <p class="placeholder">3단계에서 만들어요.</p>
+      <p class="mode-topic" id="tf-topic"></p>
+
+      <!-- 타이머 -->
+      <div class="timer">
+        <p class="timer-step" id="timer-step">1단계 · 복습</p>
+        <p class="timer-time" id="timer-time">05:00</p>
+        <p class="timer-total" id="timer-total">전체 남은 시간 25:00</p>
+        <div class="timer-buttons">
+          <button type="button" class="btn btn-blue" id="timer-start">시작</button>
+          <button type="button" class="btn" id="timer-reset" hidden>처음부터</button>
+        </div>
+      </div>
+
+      <!-- 1단계: 복습 -->
+      <div class="step" id="step-0">
+        <h3><span class="step-num">1</span> 복습 <span class="step-min">5분</span></h3>
+        <p class="step-desc">어제 문장을 듣고 소리 내서 말해 보세요. (어제 주제: <span id="review-topic"></span>)</p>
+        <ul class="mini-list" id="review-list"></ul>
+      </div>
+
+      <!-- 2단계: 오늘 문장 -->
+      <div class="step" id="step-1">
+        <h3><span class="step-num">2</span> 오늘 문장 따라 말하기 <span class="step-min">10분</span></h3>
+        <p class="step-desc">한 문장씩 듣고, 입에 붙을 때까지 여러 번 따라 말해 보세요.</p>
+        <ul class="mini-list" id="today-list"></ul>
+      </div>
+
+      <!-- 3단계: Claude 롤플레이 -->
+      <div class="step" id="step-2">
+        <h3><span class="step-num">3</span> Claude 롤플레이 <span class="step-min">10분</span></h3>
+        <p class="situation">
+          <span class="situation-label">오늘의 상황</span>
+          <strong id="situation"></strong>
+        </p>
+        <ol class="howto">
+          <li>아래 <b>프롬프트 복사</b> 버튼 누르기</li>
+          <li>Claude 앱에서 새 채팅에 붙여 넣고 보내기</li>
+          <li>음성 모드를 켜고 영어로 대화하기</li>
+        </ol>
+        <pre class="prompt" id="prompt"></pre>
+        <button type="button" class="btn btn-blue btn-wide" id="copy-prompt">프롬프트 복사</button>
+      </div>
+
+      <div id="tf-done" class="done-box" hidden>
+        <p class="done-title">25분 완료! 오늘도 해냈어요.</p>
+        <a class="btn btn-blue" href="#">홈으로</a>
+      </div>
     </section>
+
+    <!-- 25분 모드의 짧은 문장 줄 1개 모양 -->
+    <template id="mini-template">
+      <li class="mini-item">
+        <div class="mini-text">
+          <p class="mini-en" lang="en"></p>
+          <p class="mini-ko"></p>
+        </div>
+        <button type="button" class="btn mini-listen" aria-label="듣기">
+          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 9v6h4l5 4V5L8 9H4z" fill="currentColor"/>
+            <path d="M16 8.5a4.5 4.5 0 0 1 0 7M18.5 6a8 8 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </li>
+    </template>
   </main>
 
   <script src="app.js"></script>
